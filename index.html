@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>time</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+<link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+<br><br>
+<div class="row"> 
+<div class="wrapper">
+  <div class="container">
+     <div class="fakeimg">Mon
+         <div class="slider-wrapper">
+             <div id="slider-range"></div>
+             <div class="range-wrapper">
+                     <div class="range"></div>
+             </div>
+                <div id ="demo"></div>
+</div></div></div></div></div>
+<br><br>
+<div class="row">
+<div class="wrapper1">
+  <div class="container1">
+<div class="fakeimg">Tue
+         <div class="slider-wrapper1">
+             <div id="slider-range1"></div>
+             <div class="range-wrapper1">
+                     <div class="range1"></div>
+             </div>
+                <div id ="demo1"></div>
+</div></div></div></div></div>
+
+<br><br>
+<div class="row">
+<div class="wrapper2">
+  <div class="container2">
+<div class="fakeimg">Wed
+    <div class="slider-wrapper2">
+      <div id="slider-range2"></div>
+      <div class="range-wrapper2">
+        <div class="range2"></div>
+        </div>
+        <div id ="demo2"></div>
+ </div></div></div></div></div>
+<br><br>
+<div class="row">
+<div class="wrapper3">
+  <div class="container3">
+<div class="fakeimg">Thr
+    <div class="slider-wrapper3">
+      <div id="slider-range3"></div>
+      <div class="range-wrapper3">
+        <div class="range3"></div>
+        </div>
+        <div id ="demo3"></div>
+ </div></div></div></div></div>
+<br><br>
+<div class="row">
+<div class="wrapper5">
+  <div class="container5">
+<div class="fakeimg">Sat 
+    <div class="slider-wrapper5">
+      <div id="slider-range5"></div>
+      <div class="range-wrapper5">
+        <div class="range5"></div>
+        </div>
+        <div id ="demo5"></div>
+ </div></div></div></div></div>
+
+<br><br>
+<div class="row">
+<div class="wrapper4">
+  <div class="container4">
+<div class="fakeimg">Fri
+    <div class="slider-wrapper4">
+      <div id="slider-range4"></div>
+      <div class="range-wrapper4">
+        <div class="range4"></div>
+        </div>
+        <div id ="demo4"></div>
+ </div></div></div></div></div>
+
+
+<br><br>
+<div class="row">
+<div class="wrapper6">
+  <div class="container6">
+  <div class="fakeimg">Sun
+    <div class="slider-wrapper6">
+      <div id="slider-range6"></div>
+         <div class="range-wrapper6">
+             <div class="range6"></div> 
+           </div>
+                 <div id ="demo6"></div>
+</div></div></div></div></div>
+
+<script>
+function myFunction() {
+  var text = "";
+  var i;
+  for (i = 0; i <= 24; i=i+0.25) {
+  if (Number.isInteger(i)){
+    text += "<div class='marker' style='left:"+i*4.16+"%'><sup></sup>"+i+"</div>";
+
+    }
+   else{
+    text += "<div class='marker1' style='left:"+i*4.16+"%'><sup></sup>"+"</div>";      
+   }
+  }
+  document.getElementById("demo").innerHTML = text;
+  document.getElementById("demo1").innerHTML = text;
+  document.getElementById("demo2").innerHTML = text;
+  document.getElementById("demo3").innerHTML = text;
+  document.getElementById("demo4").innerHTML = text;
+  document.getElementById("demo5").innerHTML = text;
+  document.getElementById("demo6").innerHTML = text;
+}
+myFunction()
+</script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js'></script>
+<script  src="./script.js"></script>
+</body>
+</html>
+
+
+
