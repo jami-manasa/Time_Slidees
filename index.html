@@ -1,130 +1,581 @@
-<!DOCTYPE html>
-<html lang="en" >
+<html>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+
+<link rel="stylesheet" type="text/css"  href="{{url_for('static',filename='css/style.css')}}">
+<script src='https://code.jquery.com/jquery-3.1.0.min.js'></script>
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
 <head>
-  <meta charset="UTF-8">
-  <title>time</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
-<link rel="stylesheet" href="./style.css">
+<style>
+span.chat-sub{  
+  position:absolute;
+  bottom:3px;
+  right:40px;
+  background:transparent;
+  box-shadow:none;
+  border:none;
+  border-radius:50%;
+  color:#5A5EB9;
+  width:35px;
+  height:35px;  
+  cursor: pointer;
+}
+span.chat-sub:hover {
+  background-color: red;
+ 
+}
+.chat-submit {  
+  position:absolute;
+  bottom:3px;
+  right:10px;
+  background: transparent;
+  box-shadow:none;
+  border:none;
+  border-radius:50%;
+  color:#5A5EB9;
+  width:35px;
+  height:35px;  
+}
+</style>
+
+
+<script>
+
+  
+    function generate_message(msg, type ,INDEX) {
+    INDEX++;
+    var str="";
+	console.log(type);
+    str += "<div id='cm-msg-"+INDEX+"' class=\"chat-msg "+type+"\">";
+    str += "          <span class=\"msg-avatar\">";
+	if(type == 'self'){
+    str += "            <img src=\"https:\/\/i.pinimg.com\/originals\/6b\/aa\/98\/6baa98cc1c3f4d76e989701746e322dd.png\">";
+	}
+	else{
+	 str += "            <img src=\"https:\/\/images.static-collegedunia.com\/public\/college_data\/images\/logos\/148413190166.jpg\">";
+	}
+    str += "          <\/span>";
+    str += "          <div class=\"cm-msg-text\">";
+    str +=msg;
+    str += "          <\/div>";
+    str += "        <\/div>";
+    $(".chat-logs").append(str);
+	console.log(str);
+    $("#cm-msg-"+INDEX).hide().fadeIn(300);
+    if(type == 'self'){
+     $("#chat-input").val(''); 
+    }    
+    $(".chat-logs").stop().animate({ scrollTop: $(".chat-logs")[0].scrollHeight}, 1000);    
+  } 
+  
+ var lan;
+  function textToAudio() {
+				
+                let speech = new SpeechSynthesisUtterance();
+				console.log("_______>");
+				if(lan == 'te-IN'){
+				lan12 = 'hi-IN'
+				}
+				else if(lan == 'or-IN' ){
+				lan12 = 'hi-IN'
+				}
+				else{
+				lan12=lan
+				}
+				console.log(lan12);
+				console.log("_______>");
+				var str2 = xyz;
+				
+				function GFG_Fun() { 
+				var regex = /(<([^>]+)>)/ig; 
+				 str2 = str2.replace(regex, ""); 
+				} 
+				GFG_Fun();
+                speech.lang =lan12;
+                speech.text = str2;
+				console.log(str2)
+                speech.volume = 1;
+                speech.rate = 1;
+                speech.pitch = 1;
+                window.speechSynthesis.speak(speech);
+            } 
+  
+  
+var xyz="";
+$(function() {
+  var INDEX = 0; 
+  $("#chat-submit").click(function(e) {
+    e.preventDefault();
+    var msg = $("#chat-input").val(); 
+    if(msg.trim() == ''){
+      return false;
+    }
+    generate_message(msg, 'self');
+    var buttons = [
+        {
+          name: 'Existing User',
+          value: 'existing'
+        },
+        {
+          name: 'New User',
+          value: 'new'
+        }
+      ];
+	 var str = msg.toLowerCase();
+  var res = str.split(" ");
+  var joblist=["job","jobs","openings","recruits","carrer","జాబ్","ఉద్యోగం","जॉब","काम"];
+  var resul = ["results","marks","mark","result","रिजल्ट","निशान","మార్కులు","రిజల్ట్","మార్క్స్","ଫଳାଫଳ"];
+  var attend = ["attendance","attended","absent","హాజరు","उपस्थिति","अटेंडेंस","ଉପସ୍ଥାନ"];
+  var appl=["application","registration","form","register","आवेदन","पंजीकरण","రిజిస్ట్రేషన్","రిజిస్టర్","रजिस्ट्रेशन","रजिस्टर","నమోదు","एप्लीकेशन","అప్లికేషన్"];
+  var language=["oriya","ఒరియా","ओरिया","telugu","तेलुगू","తెలుగు","hindi","हिंदी","హిందీ","english","इंग्लिश","ఇంగ్లీష్","or-IN","or-IN","or-IN","te-IN","te-IN","te-IN","hi-IN","hi-IN","hi-IN","en-US","en-US","en-US","en-US","en-US","en-US"];
+  for ( i=0 ; i < joblist.length ; i++){
+    var n = res.includes(joblist[i]);
+	 if (n === true) { break; }
+  }
+  for ( j=0 ; j < resul.length ; j++){
+  
+    var r = res.includes(resul[j]);
+	 if (r === true) { break; }
+  
+  }
+   
+  for ( j=0 ; j < attend.length ; j++){
+  
+    var k = res.includes(attend[j]);
+	 if (k === true) { break; }
+  
+  }
+  for ( j=0 ; j < appl.length ; j++){
+  
+    var a = res.includes(appl[j]);
+	 if (a === true) { break; }
+  
+  }
+   for ( j=0 ; j < language.length ; j++){
+  
+    var l = res.includes(language[j]);
+	 if (l === true) { 
+	 ling=language[j];
+	 console.log("here it is ^^^^^")
+	 console.log(ling);
+	 break;
+	 }
+  
+  }
+ 
+ 
+  if (n == true){
+      var data = "<a href='https://cutm.ac.in/connect/work-at-cutm/' target='_blank'>cutm.ac.in/connect/work-at-cutm/</a>"
+		  generate_message(data, 'user'); 
+		}
+	  
+	  
+  else if (r==true){
+   
+   var data="<center><form>"
+	 data+="<div class=\"input-container\">";
+	 data+=" <input type=\"text\" id=\"regno-input1\"  required> <label>Registration number<\/label><\/div>";
+	 data+="<div class=\"input-container\">";
+   data+=" <input type=\"password\"  id=\"pass-input1\"  required><label>password<\/label> <\/div><\/br>";
+
+	
+   data+="<p1 id=\"result-submit\" >Submit<\/p1>";
+   data+="<\/form><\/center>";
+  data+="<script>";
+   
+	  data+=" $(\" p1 \").click(function() {";
+
+   data+=" var regno1 = $(\"#regno-input1\").val();" ;
+   data+=" if(regno1.trim() == ''){"
+     data+=" return false;";
+    data+="}";
+	data+="var password1 = $(\"#pass-input1\").val(); ";
+	data+="if(password1.trim() == ''){"
+     data+=" return false;";
+    data+="}";
+	
+	
+	
+	data+=" setTimeout(function() {"
+    data+="var user1 = regno1;";
+	
+	data+="var pass1 = password1;";
+	
+    data+="var INDEX;"
+    data+="       $.get(\"/results\", { msg1: user1 , msg2 :pass1}).done(function(results,INDEX) {"
+	 data+="generate_message(results, 'user',INDEX);";
+	 
+	 
+	 data+=" });"
+        data+="}, 0000)"
+	
+	data+="})";
+	  data+="<\/script>";
+		  generate_message(data, 'user'); 
+
+	
+  }
+
+	  else if (a==true){
+   
+   var data="<center><form>";
+	 data+="<div class=\"input-container\">";
+	 data+=" <input type=\"text\" id=\"regno-input1\"  required> <label>Name<\/label><\/div>";
+	 data+="<div class=\"input-container\">";
+   data+=" <input type=\"text\"  id=\"pass-input1\"  required><label>Father Name<\/label> <\/div><\/br>";
+     data+="<div class=\"input-container\">";
+   data+=" <input type=\"text\"  id=\"pass-input2\"  required><label>10th percentage<\/label> <\/div><\/br>";
+    data+="<div class=\"input-container\">";
+   data+=" <input type=\"text\"  id=\"pass-input3\"  required><label>12th percentage<\/label> <\/div><\/br>";
+    data+="<div class=\"input-container\">";
+   data+=" <input type=\"text\"  id=\"pass-input4\"  required><label>contact number<\/label> <\/div><\/br>";
+    data+="<div class=\"input-container\">";
+   data+=" <input type=\"text\"  id=\"pass-input6\"  required><label>Email-id<\/label> <\/div><\/br>";
+    data+="<div class=\"input-container\">";
+   data+=" <input type=\"text\"  id=\"pass-input5\"  required><label>Intrested Branch<\/label> <\/div><\/br>";
+   data+="<p1 id=\"result-submit\" >Submit<\/p1>";
+   data+="<\/form><\/center>";
+  data+="<script>";
+   
+	  data+=" $(\" p1 \").click(function() {";
+   data+=" var name = $(\"#regno-input1\").val();" ;
+   data+=" if(name.trim() == ''){";
+     data+=" return false;";
+    data+="}";
+	data+="var password1 = $(\"#pass-input1\").val(); ";
+	data+="if(password1.trim() == ''){";
+     data+=" return false;";
+    data+="}";
+	data+="var password2 = $(\"#pass-input2\").val(); ";
+	data+="if(password2.trim() == ''){";
+     data+=" return false;";
+    data+="}";
+	data+="var password3 = $(\"#pass-input3\").val(); ";
+	data+="if(password3.trim() == ''){";
+     data+=" return false;";
+    data+="}";
+	data+="var password4 = $(\"#pass-input4\").val(); ";
+	data+="if(password4.trim() == ''){";
+     data+=" return false;";
+    data+="}";
+	data+="var password5 = $(\"#pass-input5\").val(); ";
+	data+="if(password5.trim() == ''){";
+     data+=" return false;";
+    data+="}";
+	data+="var password6 = $(\"#pass-input6\").val(); ";
+	data+="if(password6.trim() == ''){";
+     data+=" return false;";
+    data+="}";
+	
+	
+	
+	data+=" setTimeout(function() {"
+    data+="var user1 = name;";
+	data+="var pass2 = password2;";
+	data+="var pass1 = password1;";
+	data+="var pass3 = password3;";
+	data+="var pass4 = password4;";
+	data+="var pass5 = password5;";
+	data+="var pass6 = password6;";
+	
+    data+="var INDEX;"
+    data+="       $.get(\"/appl\", { app1: user1 , app2 :pass1, app3 :pass2, app4 :pass3, app5 :pass4, app6 :pass5,app7 :pass6}).done(function(thank,INDEX) {"
+	 data+="generate_message(thank, 'user',INDEX);";
+	 data+=" });";
+        data+="}, 0000)";
+	
+	data+="})";
+	  data+="<\/script>";
+		  generate_message(data, 'user'); 
+
+	
+  }
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	   else if (k==true){
+   
+   var data="<center><form>"
+	 data+="<div class=\"input-container\">";
+	 data+=" <input type=\"text\" id=\"regno-input\"  required> <label>Registration number<\/label><\/div>";
+	 data+="<div class=\"input-container\">";
+   data+=" <input type=\"password\"  id=\"pass-input\"  required><label>password<\/label> <\/div><\/br>";
+
+	
+   data+="<p1 id=\"result-submit\" >Submit<\/p1>";
+   data+="<\/form><\/center>";
+  data+="<script>";
+   
+	  data+=" $(\" p1 \").click(function() {";
+
+   data+=" var regno = $(\"#regno-input\").val();" ;
+   data+=" if(regno.trim() == ''){"
+     data+=" return false;";
+    data+="}";
+	data+="var password = $(\"#pass-input\").val(); ";
+	data+="if(password.trim() == ''){"
+     data+=" return false;";
+    data+="}";
+	
+	data+=" setTimeout(function() {"
+    data+="var user = regno;";
+	data+="console.log(user);";
+	data+="var pass = password;";
+	
+    data+="var INDEX;"
+    data+="       $.get(\"/attendance\", { msg1: user , msg2 :pass}).done(function(results,INDEX) {"
+	 data+="generate_message(results, 'user',INDEX);";
+	 
+	 
+	 data+=" });"
+        data+="}, 0000)"
+	
+	data+="})";
+	  data+="<\/script>";
+		  generate_message(data, 'user'); 
+
+	
+  }
+	
+	else{
+	
+	 
+	 var change=0;
+    setTimeout(function() {
+          var rawText = msg;
+		  var res = rawText.replace("cutm", "centurion university");
+		  var rawText = res;
+		if (l == true){
+		  change = language.findIndex(item => rawText.toLowerCase() === item.toLowerCase());
+		 change=change+12;
+		console.log(change);
+		lan=language[change];
+		
+		if(ling == "telugu" || ling=="తెలుగు" || ling== "तेलुगू"){
+		rawText="telugu";
+		}
+		else if(ling == "hindi" || ling=="హిందీ" || ling== "हिंदी"){
+		rawText="hindi";
+		}
+		
+		else if(ling == "oriya"||ling == "ఒరియా"||ling == "ओरिया"){
+		rawText="oriya";
+		}
+		else{
+		rawText="english";
+		}
+		}
+		console.log(lan);
+		
+          $.get("/get", { msg: rawText }).done(function(data) {
+		    
+			 
+		     msg=data;
+			 
+			 generate_message(data, 'user'); 
+          });
+        }, 0000)
+		
+		}
+    
+  })
+  
+
+  
+  
+    function generate_message(msg, type) {
+    INDEX++;
+	
+    var str="";
+	console.log(type);
+    str += "<div id='cm-msg-"+INDEX+"' class=\"chat-msg "+type+"\">";
+    str += "          <span class=\"msg-avatar\">";
+	if(type == 'self'){
+    str += "            <img src=\"https:\/\/i.pinimg.com\/originals\/6b\/aa\/98\/6baa98cc1c3f4d76e989701746e322dd.png\">";
+	}
+	else{
+	 str += "            <img src=\"https:\/\/images.static-collegedunia.com\/public\/college_data\/images\/logos\/148413190166.jpg\">";
+	}
+    str += "          <\/span>";
+    str += "          <div class=\"cm-msg-text\">";
+    str +=msg;
+	xyz=msg;
+	str+="<br>"
+	if (type != 'self'){
+	
+   	str+="<span onclick=\"textToAudio()\" style=\"text-align:right\"><i class=\"material-icons\">speaker</i></span>"
+	}
+    str += "          <\/div>";
+    str += "        <\/div>";
+    $(".chat-logs").append(str);
+	console.log(str);
+    $("#cm-msg-"+INDEX).hide().fadeIn(300);
+    if(type == 'self'){
+     $("#chat-input").val(''); 
+    }    
+    $(".chat-logs").stop().animate({ scrollTop: $(".chat-logs")[0].scrollHeight}, 1000);    
+  }
+
+
+	
+	
+	
+	
+  $(document).delegate(".chat-btn", "click", function() {
+    var value = $(this).attr("chat-value");
+    var name = $(this).html();
+    $("#chat-input").attr("disabled", false);
+    generate_message(name, 'self');
+  })
+  
+  $("#chat-circle").click(function() {    
+    $("#chat-circle").toggle('scale');
+    $(".chat-box").toggle('scale');
+  })
+  
+  $(".chat-box-toggle").click(function() {
+    $("#chat-circle").toggle('scale');
+    $(".chat-box").toggle('scale');
+  })
+  
+  
+  
+})
+
+
+
+
+
+  
+</script>
+
+
+
 </head>
 
 <body>
-<br><br>
-<div class="row"> 
-<div class="wrapper">
-  <div class="container">
-     <div class="fakeimg">Mon
-         <div class="slider-wrapper">
-             <div id="slider-range"></div>
-             <div class="range-wrapper">
-                     <div class="range"></div>
-             </div>
-                <div id ="demo"></div>
-</div></div></div></div></div>
-<br><br>
-<div class="row">
-<div class="wrapper1">
-  <div class="container1">
-<div class="fakeimg">Tue
-         <div class="slider-wrapper1">
-             <div id="slider-range1"></div>
-             <div class="range-wrapper1">
-                     <div class="range1"></div>
-             </div>
-                <div id ="demo1"></div>
-</div></div></div></div></div>
+<div id="center-text">
+   <center><img src="https://upload.wikimedia.org/wikipedia/en/thumb/6/62/Centurion_University_of_Technology_and_Management_Logo.svg/800px-Centurion_University_of_Technology_and_Management_Logo.svg.png" width="50%"></center>
+  </div> 
+<div id="body"> 
+  
+<div id="chat-circle" class="btn btn-raised" onclick="popups()">
+        <div id="chat-overlay"></div>
+		    <center><i class="material-icons">speaker_phone</i></center>
+			<script>
+		function popups() {
+		var person = prompt("Please enter your mobile number (includes country code)", "+91");
+		if (person != null) {
+		 $.get("/mobile", { mob:person })
+		 console.log(person)
+			
+			}
+		}
+			</script>
+			
+			
+			
+	</div>
+  
+  <div class="chat-box">
+    <div class="chat-box-header">
+      ChatBot
+      <span class="chat-box-toggle" onclick="feed()"><i class="material-icons">close</i></span>
+	  <script>
+	  function feed(){
+'use strict';
 
-<br><br>
-<div class="row">
-<div class="wrapper2">
-  <div class="container2">
-<div class="fakeimg">Wed
-    <div class="slider-wrapper2">
-      <div id="slider-range2"></div>
-      <div class="range-wrapper2">
-        <div class="range2"></div>
-        </div>
-        <div id ="demo2"></div>
- </div></div></div></div></div>
-<br><br>
-<div class="row">
-<div class="wrapper3">
-  <div class="container3">
-<div class="fakeimg">Thr
-    <div class="slider-wrapper3">
-      <div id="slider-range3"></div>
-      <div class="range-wrapper3">
-        <div class="range3"></div>
-        </div>
-        <div id ="demo3"></div>
- </div></div></div></div></div>
-<br><br>
-<div class="row">
-<div class="wrapper5">
-  <div class="container5">
-<div class="fakeimg">Sat 
-    <div class="slider-wrapper5">
-      <div id="slider-range5"></div>
-      <div class="range-wrapper5">
-        <div class="range5"></div>
-        </div>
-        <div id ="demo5"></div>
- </div></div></div></div></div>
+let params = `scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,
+width=600,height=300,left=100,top=100`;
 
-<br><br>
-<div class="row">
-<div class="wrapper4">
-  <div class="container4">
-<div class="fakeimg">Fri
-    <div class="slider-wrapper4">
-      <div id="slider-range4"></div>
-      <div class="range-wrapper4">
-        <div class="range4"></div>
-        </div>
-        <div id ="demo4"></div>
- </div></div></div></div></div>
+open('http://127.0.0.1/chatbot/register.html', 'test', params);
 
-
-<br><br>
-<div class="row">
-<div class="wrapper6">
-  <div class="container6">
-  <div class="fakeimg">Sun
-    <div class="slider-wrapper6">
-      <div id="slider-range6"></div>
-         <div class="range-wrapper6">
-             <div class="range6"></div> 
-           </div>
-                 <div id ="demo6"></div>
-</div></div></div></div></div>
-
-<script>
-function myFunction() {
-  var text = "";
-  var i;
-  for (i = 0; i <= 24; i=i+0.25) {
-  if (Number.isInteger(i)){
-    text += "<div class='marker' style='left:"+i*4.16+"%'><sup></sup>"+i+"</div>";
-
-    }
-   else{
-    text += "<div class='marker1' style='left:"+i*4.16+"%'><sup></sup>"+"</div>";      
-   }
-  }
-  document.getElementById("demo").innerHTML = text;
-  document.getElementById("demo1").innerHTML = text;
-  document.getElementById("demo2").innerHTML = text;
-  document.getElementById("demo3").innerHTML = text;
-  document.getElementById("demo4").innerHTML = text;
-  document.getElementById("demo5").innerHTML = text;
-  document.getElementById("demo6").innerHTML = text;
 }
-myFunction()
 </script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js'></script>
-<script  src="./script.js"></script>
+
+    </div>
+    <div class="chat-box-body">
+      <div class="chat-box-overlay">   
+      </div>
+      <div class="chat-logs">
+	  <div id='cm-msg-4' class="chat-msg user">   
+	  <span class="msg-avatar">         
+	  <img src="https://images.static-collegedunia.com/public/college_data/images/logos/148413190166.jpg">   
+	  </span>   
+	  <div class="cm-msg-text">select your language 
+	<ul>
+  <li>English</li>
+  <li>Telugu</li>
+  <li>Oriya</li>
+  <li>hindi</li>
+</ul> 
+
+
+</div> 
+	  </div>
+	  
+       
+      </div><!--chat-log -->
+    </div>
+    <div class="chat-input">      
+      <form>
+        <input type="text" id="chat-input" placeholder="Send a message..." spellcheck="true"/>
+      <button type="submit" class="chat-submit" id="chat-submit" ><i class="material-icons">send</i></button>
+	<span type="submit" class="chat-sub" onclick="runSpeechRecognition()"  ><center><i class="material-icons">mic</i></center></span>
+	  <script>
+		 function runSpeechRecognition() {
+		        // get output div reference
+		        var output = document.getElementById("chat-input");
+		        // get action element reference
+		       
+                // new speech recognition object
+                var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
+                var recognition = new SpeechRecognition();
+				recognition.lang = lan;
+            
+                // This runs when the speech recognition service starts
+               
+              
+                // This runs when the speech recognition service returns result
+                recognition.onresult = function(event) {
+                    var transcript = event.results[0][0].transcript;
+					 
+                     document.getElementById("chat-input").value =transcript;
+					 
+                    output.classList.remove("hide");
+                };
+              
+                 // start recognition
+                 recognition.start();
+	        }
+			</script>
+	
+	
+	
+	
+	
+      </form>      
+    </div>
+  </div>
+  
+  
+  
+  
+</div>
+
+
+
+
 </body>
+
 </html>
-
-
-
